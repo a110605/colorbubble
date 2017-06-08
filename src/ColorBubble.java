@@ -18,7 +18,7 @@ public class ColorBubble extends JFrame
   private JCheckBox collide=new JCheckBox("偵測碰撞");
   private JCheckBox combine=new JCheckBox("碰撞結合");
   private JCheckBox collidesmall=new JCheckBox("碰撞變小");
-  private JLabel label1,label2;
+  private JLabel label1,label2,label3;
   private Color back=Color.BLACK,backchange;//宣告背景顏色
   private JPanel status,right;//宣告狀態列和CheckBox的panel，
   private JumpAreaPanel jumpareapanel;
@@ -37,6 +37,7 @@ public class ColorBubble extends JFrame
 				  {
 					  jumpareapanel.set("addball");
 					  label1.setText("目前功能: 新增球");
+					  label3.setText("速度："+jumpareapanel.getspeed());
 				  }
 			  }
 	  );
@@ -93,7 +94,7 @@ public class ColorBubble extends JFrame
 				  {
 					  jumpareapanel.changeSpeed(-10);
 					  label1.setText("目前功能: 加速");
-					  
+					  label3.setText("速度 "+jumpareapanel.getspeed());
 				  }
 			  }
 	  );
@@ -103,9 +104,9 @@ public class ColorBubble extends JFrame
 			  {
 				  public void actionPerformed(ActionEvent event)
 				  {
-					  jumpareapanel.changeSpeed(10);
+					  jumpareapanel.changeSpeed(+10);
 					  label1.setText("目前功能: 減速");
-					  
+					  label3.setText("速度 "+jumpareapanel.getspeed());
 				  }
 			  }
 	  );
@@ -209,10 +210,13 @@ public class ColorBubble extends JFrame
 	  status.setBackground(Color.GRAY);
 	  label1=new JLabel("目前功能 : 新增球");
 	  label2=new JLabel("球數 :");   
+	  label3= new JLabel("速度 ");
 	  label1.setForeground(Color.WHITE);
 	  label2.setForeground(Color.WHITE);
+	  label3.setForeground(Color.WHITE);
 	  status.add(label1);
 	  status.add(label2);
+	  status.add(label3);
 	  right.add(collide);  
 	  right.add(collidesmall);
 	  right.add(combine);
@@ -220,7 +224,7 @@ public class ColorBubble extends JFrame
 	  collidesmall.setSelected(false);
 	  collidesmall.setEnabled(false);
 	  
-	  jumpareapanel= new JumpAreaPanel(label2);
+	  jumpareapanel= new JumpAreaPanel(label2,label3);
 	  constraints.fill = GridBagConstraints.BOTH; 
 	  addComponent(addball,0,0,1,2);
 	  addComponent(delchoose,0,1,1,1);

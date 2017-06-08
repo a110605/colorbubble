@@ -8,18 +8,19 @@ public class JumpAreaPanel extends JPanel implements Runnable
   private int x,y,i,j;//宣告變數 滑鼠點選位置(x y)
   private String tool;//宣告選取功能時的變數
   private Ball ball;
-  private JLabel ballcount;
+  private JLabel ballcount, labelballspeed;
   private JumpAreaPanel board;
   private Vector v=new Vector();//宣告一Vector來存放球的控制權
   boolean stop=false, stopall=false;//宣告一boolean值 暫停，暫停全部
   private boolean collisionMode,collisionSmallMode,combineMode;//碰撞 結合 變小mode的boolean值
   private int ballspeed = 40;//畫面重畫的speed
   
-  public JumpAreaPanel(JLabel label)
+  public JumpAreaPanel(JLabel label,JLabel label3)
   {
 	  board =  this;
 	  tool = "addball";//預設為addball
 	  ballcount = label;//球數
+	  labelballspeed = label3;
 	  
 	  addMouseListener(
 			  new MouseAdapter()
@@ -34,7 +35,8 @@ public class JumpAreaPanel extends JPanel implements Runnable
 						  Ball balls=new Ball(x,y,board);
 					      v.add(balls);//把球加入vector中
 						  balls.start();//開始球的run
-						  ballcount.setText("球數 :"+v.size());
+						  ballcount.setText("球數 "+v.size());
+						  labelballspeed.setText("速度 "+ballspeed);
 						  stopall=false;
 					  }		  
 				     else if(tool=="stopchoose")
@@ -77,10 +79,10 @@ public class JumpAreaPanel extends JPanel implements Runnable
   {
   	ballspeed += i;
   	
-  	if( ballspeed <= 1 )
-  		ballspeed = 1;
-  	else if(ballspeed > 1500)
-  		ballspeed = 1500;
+  	if( ballspeed <= 10 )
+  		ballspeed = 10;
+  	else if(ballspeed > 100)
+  		ballspeed = 100;
   }
 
 public void run() // thread
@@ -112,13 +114,13 @@ public void run() // thread
 
  public int getspeed()
  {
-	return ballspeed;
+	return (110-ballspeed);
  }
  
-  public void set( String chose ) // 目前的按鈕狀態
-	{
+public void set( String chose ) // 目前的按鈕狀態
+{
 		tool = chose;
-	}//end set()
+}
   
   public void stopAll()
   {
@@ -219,6 +221,7 @@ public void run() // thread
 			}//end for j
 		}//end for i
   }//end Collision
+  
 /**************************此method用來從畫面中點選球來執行動作*************************************************/
   private Ball getBallSelect(int xaxis,int yaxis,Vector totalBalls)//滑鼠點的位置
   {
@@ -232,7 +235,7 @@ public void run() // thread
 					&&(yaxis >= ball.getBally())
 					&& (yaxis <= (ball.getBally()+ball.getBallR())))//只要在半徑範圍內都會被選到
 					{
-				     return ball;//回傳選到的球
+				     return ball; //回傳選到的球
 					}
 		  }//end if
 	  }//end for
