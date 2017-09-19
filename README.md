@@ -9,7 +9,6 @@
 
 ![image](https://github.com/a110605/colorbubble/blob/master/picture/screenshot.png)
 
-
 ## Features 
 一開始按鍵的預設值為新增球,按滑鼠左鍵可新增球
 
@@ -24,3 +23,7 @@
 * **偵測碰撞** : 球會碰撞分開
 * **碰撞結合** : 球會結合
 * **碰撞變小** : 球碰撞後會逐漸縮小
+
+## Demo
+<img src="https://github.com/a110605/ColorBubble/blob/master/pictures/dyamic.gif">
+
