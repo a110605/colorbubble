@@ -25,5 +25,5 @@
 * **碰撞變小** : 球碰撞後會逐漸縮小
 
 ## Demo
-<img src="https://github.com/a110605/ColorBubble/blob/master/pictures/dyamic.gif">
+<img src="https://github.com/a110605/colorbubble/blob/master/picture/dyamic.gif">
 
